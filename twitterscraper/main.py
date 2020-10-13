@@ -126,8 +126,9 @@ def main():
             pprint([tweet.__dict__ for tweet in tweets])
         else:
             if tweets:
-                with open(args.output, "w", encoding="utf-8") as output:
+                with open(args.output, "wb+", encoding="utf-8") as output:
                     if args.csv:
+                        output = output.read().decode("utf-8")
                         f = csv.writer(output, delimiter=";", quoting=csv.QUOTE_NONNUMERIC)
                         f.writerow([
                             "screen_name", "username", "user_id", "tweet_id",
